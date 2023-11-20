@@ -102,9 +102,9 @@ Let's create a `TodoController` class
 ```TS
 @Controller()
 export class TodoController extends ControllerBase {
-	constructor() {
-		super("/users/:id/todos");
-	}
+  constructor() {
+    super("/users/:id/todos");
+  }
 }
 ```
 
@@ -113,13 +113,12 @@ The `@Controller()` registers the TodoController to the main application. Now, l
 ```TS
 @Get('/')
 async fetchAll(req: express.Request, res: express.Response) {
-	const { id } = req.params;
-	const data = todos.filter((todo) => todo.userId === parseInt(id));
-
-	res.json({
-		data,
-		count: data.length,
-	});
+  const { id } = req.params;
+  const data = todos.filter((todo) => todo.userId === parseInt(id));
+  res.json({
+    data,
+    count: data.length,
+  });
 }
 
  @Get("/:todoId")
@@ -139,20 +138,20 @@ async fetchAll(req: express.Request, res: express.Response) {
 
 @Post('/')
 async createTodo(req: express.Request, res: express.Response) {
-	const { id } = req.params;
-	const { title } = req.body;
-	const data = {
-		userId: parseInt(id),
-		id: ++nextId,
-		title,
-		completed: false,
+  const { id } = req.params;
+  const { title } = req.body;
+  const data = {
+    userId: parseInt(id),
+    id: ++nextId,
+    title,
+    completed: false,
    }
    todos.push(data);
    return res.status(201).json(data);
 };
 ```
 
-These decorators: `@Get` and `Post` registers a method to the controllers primary router. This makes it possible to add new request handlers without modify multiple lines of code. The name of these decorators reflect on the HTTP method they assign a method to.
+These decorators: `@Get` and `Post` register a method to the controllers' primary router. This makes it possible to add new request handlers without modifying multiple lines of code. The name of these decorators reflects on the HTTP method they assign a method to.
 
 Now, let's add an import statement for TodoController in `/controllers/index.ts`:
 
@@ -170,7 +169,7 @@ Now you can run the application
 npm run start
 ```
 
-and make request to these endpoints:
+and make requests to these endpoints:
 
 - **`GET`** - `/api/users/:id/todos`
 - **`GET`** - `/api/users/:id/todos/:todoId`
