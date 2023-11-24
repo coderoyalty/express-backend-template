@@ -1,4 +1,4 @@
-import ControllerBase from "@/controllers/base.controller";
+import BaseController from "@/controllers/base.controller";
 
 /**
  * ControllerFactory Class
@@ -9,7 +9,7 @@ import ControllerBase from "@/controllers/base.controller";
  */
 class ControllerFactory {
 	// A map to store instances of controllers, using the class name as the key
-	private static instances: Map<string, ControllerBase> = new Map();
+	private static instances: Map<string, BaseController> = new Map();
 
 	/**
 	 * getInstance Method
@@ -30,7 +30,7 @@ class ControllerFactory {
 			return this.instances.get(name) as T;
 		}
 
-		const instance: ControllerBase = new (controller as any)(...args);
+		const instance: BaseController = new (controller as any)(...args);
 		this.instances.set(name, instance);
 
 		// Log a message indicating that the instance has been created

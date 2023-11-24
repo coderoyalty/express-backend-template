@@ -1,6 +1,6 @@
 import App from "@/app";
 import ControllerFactory from "./controller.factory";
-import ControllerBase from "@/controllers/base.controller";
+import BaseController from "@/controllers/base.controller";
 
 /**
  * Controller Decorator
@@ -15,7 +15,7 @@ function Controller(...args: any[]): ClassDecorator {
 	return function <T>(target: T) {
 		const app = App.getInstance();
 		const instance = ControllerFactory.getInstance(target, ...args);
-		app.injectController(instance as ControllerBase);
+		app.injectController(instance as BaseController);
 	};
 }
 

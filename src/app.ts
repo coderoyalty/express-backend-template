@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import morgan from "morgan";
 import cors from "cors";
-import ControllerBase from "./controllers/base.controller";
+import BaseController from "./controllers/base.controller";
 
 export default class App {
 	private static instance: App | null = null;
@@ -16,7 +16,7 @@ export default class App {
 		this.port = (process.env.PORT || 5000) as number;
 	}
 
-	injectController(controller: ControllerBase) {
+	injectController(controller: BaseController) {
 		let endpoint = controller.endpoint;
 		if (endpoint.length > 0 && endpoint[0] === "/") {
 			endpoint = endpoint.slice(1);
