@@ -1,5 +1,6 @@
-import ControllerBase from "@/controllers/base.controller";
+import BaseController from "@/controllers/base.controller";
 import ControllerFactory from "./controller.factory";
+import asyncHandler from "express-async-handler";
 import App from "@/app";
 
 enum HttpMethod {
@@ -11,7 +12,7 @@ enum HttpMethod {
 }
 
 function registerRouteWithMethod(
-	instance: ControllerBase,
+	instance: BaseController,
 	originalMethod: any,
 	path: string,
 	method: HttpMethod = HttpMethod.GET,
@@ -23,19 +24,23 @@ function registerRouteWithMethod(
 	}
 	switch (method) {
 		case HttpMethod.GET:
-			instance.router.get(path, ...middlewares, originalMethod);
+			instance.router.get(path, ...middlewares, asyncHandler(originalMethod));
 			break;
 		case HttpMethod.POST:
-			instance.router.post(path, ...middlewares, originalMethod);
+			instance.router.post(path, ...middlewares, asyncHandler(originalMethod));
 			break;
 		case HttpMethod.DELETE:
-			instance.router.delete(path, ...middlewares, originalMethod);
+			instance.router.delete(
+				path,
+				...middlewares,
+				asyncHandler(originalMethod),
+			);
 			break;
 		case HttpMethod.PATCH:
-			instance.router.patch(path, ...middlewares, originalMethod);
+			instance.router.patch(path, ...middlewares, asyncHandler(originalMethod));
 			break;
 		case HttpMethod.PUT:
-			instance.router.put(path, ...middlewares, originalMethod);
+			instance.router.put(path, ...middlewares, asyncHandler(originalMethod));
 			break;
 		default:
 			break;
@@ -61,7 +66,7 @@ function Get(path: string, ...middlewares: any[]) {
 		const instance = ControllerFactory.getInstance(target.constructor);
 
 		registerRouteWithMethod(
-			instance as ControllerBase,
+			instance as BaseController,
 			originalMethod,
 			path,
 			HttpMethod.GET,
@@ -86,7 +91,7 @@ function Delete(path: string, ...middlewares: any[]) {
 		const instance = ControllerFactory.getInstance(target.constructor);
 
 		registerRouteWithMethod(
-			instance as ControllerBase,
+			instance as BaseController,
 			originalMethod,
 			path,
 			HttpMethod.DELETE,
@@ -111,7 +116,7 @@ function Put(path: string, ...middlewares: any[]) {
 		const instance = ControllerFactory.getInstance(target.constructor);
 
 		registerRouteWithMethod(
-			instance as ControllerBase,
+			instance as BaseController,
 			originalMethod,
 			path,
 			HttpMethod.PUT,
@@ -136,7 +141,7 @@ function Post(path: string, ...middlewares: any[]) {
 		const instance = ControllerFactory.getInstance(target.constructor);
 
 		registerRouteWithMethod(
-			instance as ControllerBase,
+			instance as BaseController,
 			originalMethod,
 			path,
 			HttpMethod.POST,
@@ -161,7 +166,7 @@ function Patch(path: string, ...middlewares: any[]) {
 		const instance = ControllerFactory.getInstance(target.constructor);
 
 		registerRouteWithMethod(
-			instance as ControllerBase,
+			instance as BaseController,
 			originalMethod,
 			path,
 			HttpMethod.PATCH,

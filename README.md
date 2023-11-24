@@ -56,7 +56,7 @@ Let's create a TodoController to showcase how to use this template.
 
 ```TS
 // File: controllers/todo.ts
-import ControllerBase from "@/controllers/base.controller";
+import BaseController from "@/controllers/base.controller";
 import Controller from "@utils/controller.decorator";
 import {Get, Post} from "@utils/route.decorator";
 
@@ -101,7 +101,7 @@ Let's create a `TodoController` class
 
 ```TS
 @Controller()
-export class TodoController extends ControllerBase {
+export class TodoController extends BaseController {
   constructor() {
     super("/users/:id/todos");
   }

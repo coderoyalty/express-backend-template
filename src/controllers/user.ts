@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import Controller from "@/utils/controller.decorator";
-import ControllerBase from "./base.controller";
+import BaseController from "./base.controller";
 import { Get, Post } from "@/utils/route.decorator";
 
 @Controller()
-export class UserController extends ControllerBase {
+export class UserController extends BaseController {
 	constructor() {
 		super("/users");
 	}
