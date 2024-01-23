@@ -1,6 +1,6 @@
-import App from "@/app";
+import App from "../app";
 import ControllerFactory from "./controller.factory";
-import BaseController from "@/controllers/base.controller";
+import BaseController from "../controllers/base.controller";
 
 /**
  * Controller Decorator

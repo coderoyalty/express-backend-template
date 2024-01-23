@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import Controller from "@/utils/controller.decorator";
+import Controller from "../utils/controller.decorator";
 import BaseController from "./base.controller";
-import { Get, Post } from "@/utils/route.decorator";
+import { Get, Post } from "../utils/route.decorator";
 
 @Controller()
 export class UserController extends BaseController {

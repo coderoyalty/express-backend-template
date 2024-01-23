@@ -1,4 +1,4 @@
-import BaseController from "@/controllers/base.controller";
+import BaseController from "../controllers/base.controller";
 
 /**
  * ControllerFactory Class

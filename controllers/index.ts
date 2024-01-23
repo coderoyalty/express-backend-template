@@ -1,5 +1,5 @@
-import "@/controllers/base.controller";
-import "@/controllers/user";
+import "./base.controller";
+import "./user.controller";
 
 // It's important to import every other controller file here!
 

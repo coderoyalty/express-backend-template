@@ -1,7 +1,7 @@
-import BaseController from "@/controllers/base.controller";
+import BaseController from "../controllers/base.controller";
 import ControllerFactory from "./controller.factory";
 import asyncHandler from "express-async-handler";
-import App from "@/app";
+import App from "../app";
 
 enum HttpMethod {
 	GET = "get",
