@@ -2,6 +2,7 @@ import express, { Express } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import BaseController from "./controllers/base.controller";
+import errorMiddleWare from "./middlewares/error.middleware";
 
 export default class App {
 	private static instance: App | null = null;
@@ -56,7 +57,13 @@ export default class App {
 		return this.instance;
 	}
 
+	private initHandler() {
+		this.app.use(errorMiddleWare);
+	}
+
 	public run() {
+		this.initHandler();
+
 		const server = this.app.listen(this.port, () => {
 			const time = new Date().toISOString();
 			console.log(
